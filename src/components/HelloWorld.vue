@@ -1,41 +1,33 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
+  <div class="heading">
+    <h1>煮えてなんぼのォ!! おでんに候!!! 🍜</h1>
+    <img class="img" src="/yamato.jpg" />
+    <div>
+      <h4>👋 Hi there, I'm Kaohiso and welcome to my personal website.</h4>
+      <h4>🧑‍💻 I'm a Fullstack developer and looking for a new position.</h4>
+      <h4>🍖 I love One Piece (but you may know), climbing and music.</h4>
+      <h4>🏁 My credo is to succeed in everything I undertake.</h4>
+    </div>
   </div>
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
+.heading {
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+.img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  -webkit-animation: rotating 20s linear infinite;
+  -moz-animation: rotating 20s linear infinite;
+  -ms-animation: rotating 20s linear infinite;
+  -o-animation: rotating 20s linear infinite;
+  animation: rotating 20s linear infinite;
 }
 </style>
