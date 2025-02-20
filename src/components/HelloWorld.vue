@@ -1,9 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ContributionCalendar from './ContributionCalendar.vue'
+</script>
 
 <template>
   <div class="heading">
     <h1>煮えてなんぼのォ!! おでんに候!!! 🍜</h1>
     <img class="img" src="/yamato.jpg" />
+    <ContributionCalendar />
     <div>
       <h4>👋 Hi there, I'm Kaohiso and welcome to my personal website.</h4>
       <h4>🧑‍💻 I'm a Fullstack developer and looking for a new position.</h4>
