@@ -71,13 +71,14 @@ export default {
     <h1 v-if="loading">Laoding...</h1>
     <h1 v-if="error">{{ error }} for</h1>
     <h3>{{ contributions.totalContributions }} contributions for {{ new Date().getFullYear() }}</h3>
-    <div class="week">
+    <div class="calendar">
       <div
         v-if="contributions.weeks.length > 0"
         v-for="(week, index) in contributions.weeks"
         :key="index"
+        class="week"
       >
-        <div v-for="(day, index) in week.contributionDays" :key="index" class="days">
+        <div v-for="(day, index) in week.contributionDays" :key="index" class="day">
           <div
             class="box"
             :style="{
@@ -96,16 +97,23 @@ export default {
 </template>
 
 <style scoped>
-.week {
+.calendar {
   display: grid;
   grid-template-columns: repeat(auto, 10px);
   grid-auto-flow: column;
   width: 20%;
   margin: auto;
+  gap: 3px;
 }
 
-.days {
-  margin: 3px;
+.week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.week:first-child {
+  justify-content: flex-end;
 }
 
 .day-info {
