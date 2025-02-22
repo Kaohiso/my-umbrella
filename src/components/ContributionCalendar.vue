@@ -11,11 +11,23 @@ export default {
       loading: true,
       error: null as string | null,
       token: import.meta.env.VITE_GITHUB_TOKEN,
+      legendColors: [
+        'var(--vt-c-black-mute)',
+        'var(--vt-c-royalblue-faded)',
+        'var(--vt-c-royalblue-mute)',
+        'var(--vt-c-royalblue)',
+      ],
     }
   },
   methods: {
     formatDate(date: string) {
       return moment(date).format('MMMM Do')
+    },
+    boxColor(contributionCount: number) {
+      if (contributionCount === 1) return 'var(--vt-c-royalblue-faded)'
+      else if (contributionCount === 2) return 'var(--vt-c-royalblue-mute)'
+      else if (contributionCount >= 3) return 'var(--vt-c-royalblue)'
+      else return 'var(--vt-c-black-mute)'
     },
     async postGitHubContributions() {
       const currentYear = new Date().getFullYear()
@@ -70,7 +82,7 @@ export default {
   <section>
     <h1 v-if="loading">Laoding...</h1>
     <h1 v-if="error">{{ error }} for</h1>
-    <h3>{{ contributions.totalContributions }} contributions for {{ new Date().getFullYear() }}</h3>
+    <!-- <h3>{{ contributions.totalContributions }} contributions for {{ new Date().getFullYear() }}</h3> -->
     <div class="calendar">
       <div
         v-if="contributions.weeks.length > 0"
@@ -82,8 +94,7 @@ export default {
           <div
             class="box"
             :style="{
-              backgroundColor:
-                day.contributionCount > 0 ? 'var(--vt-c-royalblue)' : 'var(--vt-c-black-mute)',
+              backgroundColor: boxColor(day.contributionCount),
             }"
           >
             <h5 class="day-info">
@@ -93,20 +104,37 @@ export default {
         </div>
       </div>
     </div>
+    <div class="legend">
+      <h5>less</h5>
+      <div
+        v-for="(color, index) in legendColors"
+        :key="index"
+        class="box"
+        :style="{ backgroundColor: color }"
+      ></div>
+      <h5>more</h5>
+    </div>
   </section>
 </template>
 
 <style scoped>
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(auto, 10px);
   grid-auto-flow: column;
-  width: 20%;
-  margin: auto;
   gap: 3px;
 }
 
 .week {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -140,5 +168,14 @@ export default {
   width: 10px;
   height: 10px;
   border-radius: 15%;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 </style>
