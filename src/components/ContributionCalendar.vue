@@ -17,6 +17,7 @@ export default {
         'var(--vt-c-royalblue-mute)',
         'var(--vt-c-royalblue)',
       ],
+      weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     }
   },
   methods: {
@@ -29,6 +30,15 @@ export default {
       else if (contributionCount >= 3) return 'var(--vt-c-royalblue)'
       else return 'var(--vt-c-black-mute)'
     },
+    getMonthName(date: string) {
+      return new Date(date).toLocaleDateString('en-US', { month: 'short' })
+    },
+    isNewMonth(date: string, weekIndex: number) {
+      if (weekIndex === 0) return true // Always show the first month's label
+      const prevWeekDate = this.contributions.weeks[weekIndex - 1].contributionDays[0].date
+      return new Date(date).getMonth() !== new Date(prevWeekDate).getMonth()
+    },
+
     async postGitHubContributions() {
       const currentYear = new Date().getFullYear()
       const fromDate = `${currentYear}-01-01T00:00:00Z`
@@ -84,12 +94,23 @@ export default {
     <h1 v-if="error">{{ error }} for</h1>
     <!-- <h3>{{ contributions.totalContributions }} contributions for {{ new Date().getFullYear() }}</h3> -->
     <div class="calendar">
+      <div class="week">
+        <div class="weekDay" v-for="(day, index) in weekDays">
+          <span v-if="index % 2 === 1">{{ weekDays[index] }}</span>
+        </div>
+      </div>
       <div
         v-if="contributions.weeks.length > 0"
-        v-for="(week, index) in contributions.weeks"
-        :key="index"
+        v-for="(week, weekIndex) in contributions.weeks"
+        :key="weekIndex"
         class="week"
       >
+        <span
+          v-if="isNewMonth(week.contributionDays[0].date, weekIndex)"
+          style="position: absolute; top: -27%"
+        >
+          {{ getMonthName(week.contributionDays[0].date) }}
+        </span>
         <div v-for="(day, index) in week.contributionDays" :key="index" class="day">
           <div
             class="box"
@@ -124,6 +145,8 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .calendar {
@@ -141,7 +164,22 @@ section {
 }
 
 .week:first-child {
+  margin-right: 3px;
+}
+
+.week:nth-child(2) {
   justify-content: flex-end;
+}
+
+.weekDay {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 15%;
+  text-align: center;
 }
 
 .day-info {
