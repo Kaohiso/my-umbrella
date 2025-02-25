@@ -56,6 +56,15 @@
   }
 }
 
+.theme-light {
+  color: var(--vt-c-black);
+  background: var(--vt-c-white-soft);
+
+  nav a {
+    color: var(--vt-c-black);
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -89,4 +98,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+nav a {
+  color: var(--color-text);
 }
