@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-
 const props = defineProps({
-  modelValue: Boolean, // This allows v-model support
+  modelValue: Boolean,
 })
 
 const emit = defineEmits(['update:modelValue'])

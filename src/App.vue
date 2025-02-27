@@ -53,4 +53,15 @@ nav a:hover::after,
 nav a.router-link-exact-active::after {
   transform: scaleX(1);
 }
+
+.img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  -webkit-animation: rotating 20s linear infinite;
+  -moz-animation: rotating 20s linear infinite;
+  -ms-animation: rotating 20s linear infinite;
+  -o-animation: rotating 20s linear infinite;
+  animation: rotating 20s linear infinite;
+}
 </style>

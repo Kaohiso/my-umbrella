@@ -1,7 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ThreeModel from '@/components/ThreeModel.vue'
+</script>
 
 <template>
-  <h1>Hello from about page</h1>
+  <div class="heading">
+    <ThreeModel />
+  </div>
 </template>
 
-<style></style>
+<style scoped>
+.heading {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+</style>
