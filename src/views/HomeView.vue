@@ -20,10 +20,12 @@ import ThreeModel from '@/components/ThreeModel.vue'
 <style scoped>
 .heading {
   display: flex;
+  height: 100%;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   gap: 1rem;
+  padding-bottom: 3rem;
 }
 </style>

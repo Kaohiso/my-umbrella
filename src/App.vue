@@ -2,6 +2,8 @@
 import { ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import ThemeToggle from './components/ThemeToggle.vue'
+import GitHub from '/svg/github.svg'
+import LinkedIn from '/svg/linkedin.svg'
 
 const lightMode = ref(JSON.parse(localStorage.getItem('lightMode') || 'false'))
 
@@ -11,19 +13,41 @@ watch(lightMode, (newValue) => {
 </script>
 
 <template>
-  <body :class="{ 'theme-light': lightMode }">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About me</RouterLink>
-      <ThemeToggle v-model="lightMode" />
-    </nav>
+  <div class="container" :class="{ 'theme-light': lightMode }">
+    <header>
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About me</RouterLink>
+        <ThemeToggle v-model="lightMode" />
+      </nav>
+    </header>
+
     <main>
       <RouterView />
     </main>
-  </body>
+
+    <footer :class="{ 'theme-light-footer': lightMode }">
+      <section>
+        <a href="https://github.com/Kaohiso">
+          <img src="/svg/github.svg" alt="github account" width="30" height="30" />
+        </a>
+        <a href="https://www.linkedin.com/in/antoine-bentini-17b7a3197/">
+          <img src="/svg/linkedin.svg" alt="github account" width="30" height="30" />
+        </a>
+      </section>
+      <h5>kaohiso © 2025</h5>
+    </footer>
+  </div>
 </template>
 
 <style scoped>
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -37,7 +61,6 @@ nav a {
   display: inline-block;
   font-weight: bold;
   text-decoration: none;
-  color: var(--color-text);
 }
 
 nav a::after {
@@ -63,5 +86,19 @@ nav a.router-link-exact-active::after {
   -ms-animation: rotating 20s linear infinite;
   -o-animation: rotating 20s linear infinite;
   animation: rotating 20s linear infinite;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  section {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
 }
 </style>
