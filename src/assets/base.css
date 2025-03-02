@@ -105,10 +105,6 @@ body {
   background: var(--color-background);
 }
 
-main {
-  height: 90vh;
-}
-
 footer {
   height: 10vh;
   background: var(--color-background-soft);

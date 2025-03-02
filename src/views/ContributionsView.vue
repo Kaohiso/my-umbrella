@@ -4,7 +4,7 @@ import ThreeModel from '@/components/ThreeModel.vue'
 
 <template>
   <div class="heading">
-    <ThreeModel />
+    <h5>Contributions on github will be display here!</h5>
   </div>
 </template>
 

@@ -17,7 +17,7 @@ watch(lightMode, (newValue) => {
     <header>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About me</RouterLink>
+        <!-- <RouterLink to="/contributions">Contributions</RouterLink> -->
         <ThemeToggle v-model="lightMode" />
       </nav>
     </header>
@@ -45,14 +45,15 @@ watch(lightMode, (newValue) => {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   font-size: 18px;
   gap: 1rem;
 }

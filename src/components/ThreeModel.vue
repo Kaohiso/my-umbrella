@@ -15,7 +15,7 @@ onMounted(() => {
   container.value.appendChild(renderer.domElement)
 
   const scene = new THREE.Scene()
-  scene.background = new THREE.Color('#282828')
+  // scene.background = new THREE.Color('#282828')
 
   const camera = new THREE.OrthographicCamera(
     (-8 * window.innerWidth) / window.innerHeight,
@@ -31,7 +31,6 @@ onMounted(() => {
   scene.add(light)
 
   const controls = new OrbitControls(camera, renderer.domElement)
-  // controls.target.set(0, 0, 0)
 
   controls.enableDamping = true
 
@@ -75,9 +74,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+h4 {
+  color: #ff6347;
+  font-weight: bold;
+}
 .three-container {
   display: block;
-  width: 28rem;
-  height: 15rem;
+  width: 40rem;
+  height: 20rem;
 }
 </style>
