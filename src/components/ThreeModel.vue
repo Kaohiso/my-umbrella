@@ -15,7 +15,7 @@ onMounted(() => {
   container.value.appendChild(renderer.domElement)
 
   const scene = new THREE.Scene()
-  // scene.background = new THREE.Color('#282828')
+  scene.background = new THREE.Color('#282828')
 
   const camera = new THREE.OrthographicCamera(
     (-8 * window.innerWidth) / window.innerHeight,

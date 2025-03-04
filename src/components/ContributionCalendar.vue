@@ -38,7 +38,6 @@ export default {
       const prevWeekDate = this.contributions.weeks[weekIndex - 1].contributionDays[0].date
       return new Date(date).getMonth() !== new Date(prevWeekDate).getMonth()
     },
-
     async postGitHubContributions() {
       const currentYear = new Date().getFullYear()
       const fromDate = `${currentYear}-01-01T00:00:00Z`
@@ -91,7 +90,7 @@ export default {
 <template>
   <section>
     <h1 v-if="loading">Laoding...</h1>
-    <h1 v-if="error">{{ error }} for</h1>
+    <h1 v-if="error">{{ error }}</h1>
     <!-- <h3>{{ contributions.totalContributions }} contributions for {{ new Date().getFullYear() }}</h3> -->
     <div class="calendar">
       <div class="week">
